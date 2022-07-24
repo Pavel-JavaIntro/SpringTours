@@ -1,10 +1,11 @@
 package by.pavka.springtour.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="users")
-public class LibraryUser {
+public class LibraryUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

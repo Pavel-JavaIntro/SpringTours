@@ -1,17 +1,47 @@
 package by.pavka.springtour.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Tour {
+@Entity
+@Table(name="tours")
+public class Tour implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
-    private int statusId;
-    private int typeId;
-    private String Description;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name="type_id")
+    private TourType tourType;
+
+    @Column(name="description")
+    private String description;
+
+    @Column(name="capacity")
     private int capacity;
+
+    @Column(name="booked")
     private int booked;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="start_date")
     private Date startDate;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="end_date")
     private Date endDate;
+
+    @Column(name="price")
     private int price;
+
+    @Column(name="tour_status")
+    @Enumerated(EnumType.STRING)
+    private TourStatus tourStatus;
 
     public int getId() {
         return id;
@@ -21,28 +51,20 @@ public class Tour {
         this.id = id;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public TourType getTourType() {
+        return tourType;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
-    }
-
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setTourType(TourType tourType) {
+        this.tourType = tourType;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public int getCapacity() {
@@ -85,18 +107,25 @@ public class Tour {
         this.price = price;
     }
 
+    public TourStatus getTourStatus() {
+        return tourStatus;
+    }
+
+    public void setTourStatus(TourStatus tourStatus) {
+        this.tourStatus = tourStatus;
+    }
+
     @Override
     public String toString() {
         return "Tour{" +
                 "id=" + id +
-                ", statusId=" + statusId +
-                ", typeId=" + typeId +
-                ", Description='" + Description + '\'' +
+                ", tourType=" + tourType +
+                ", Description='" + description + '\'' +
                 ", capacity=" + capacity +
                 ", booked=" + booked +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", price=" + price +
+                ", price=" + price + "status= " + tourStatus +
                 '}';
     }
 }

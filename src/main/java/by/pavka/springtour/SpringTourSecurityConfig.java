@@ -25,13 +25,17 @@ public class SpringTourSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/api").permitAll()
                 .antMatchers("/SpringTour/index.html").permitAll()
                 .antMatchers("/SpringTour/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/libraryUsers").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-                .antMatchers("/api/tours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/tours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/authorities").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/tours/**").hasRole("ADMIN")
                 .antMatchers("/libraryUsers/**").hasRole("ADMIN")
                 .and().formLogin().permitAll();
     }

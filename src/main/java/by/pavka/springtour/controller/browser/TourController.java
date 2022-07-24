@@ -1,17 +1,5 @@
 package by.pavka.springtour.controller.browser;
 
-import by.pavka.springtour.exception.NoSuchIDException;
-import by.pavka.springtour.model.Tour;
-import by.pavka.springtour.service.TourDaoImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 //@Controller
 //@RequestMapping("/tours")
 public class TourController {

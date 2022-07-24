@@ -1,18 +1,9 @@
 package by.pavka.springtour.controller.rest;
 
-import by.pavka.springtour.exception.NoSuchIDException;
-import by.pavka.springtour.model.Tour;
-import by.pavka.springtour.service.TourDaoImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 //@RestController
 //@RequestMapping("api/tours")
 public class TourRestController {
+    //TODO fix LogAspect
 //    @Autowired
 //    TourDaoImpl dao;
 //

@@ -15,9 +15,6 @@ import java.util.List;
 @Service
 public class LibraryUserService {
 
-    @PersistenceContext
-    EntityManager entityManager;
-
     @Autowired
     LibraryUserRepository repository;
 
