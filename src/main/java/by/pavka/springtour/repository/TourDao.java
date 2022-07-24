@@ -5,11 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public interface TourDao {
-    Tour getTourById(int id);
-    List<Tour> getAllTours();
-    int addTour(Tour tour);
-    int updateTour(Tour tour);
-    int deleteTour(int id);
+//    Tour getTourById(int id);
+//    List<Tour> getAllTours();
+//    int addTour(Tour tour);
+//    int updateTour(Tour tour);
+//    int deleteTour(int id);
 }

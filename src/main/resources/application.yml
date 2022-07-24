@@ -4,6 +4,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/tourism
     username: postgres
     password: pavel
+#  data:
+#    rest:
+#      base-path: api
+
 
   jpa:
     show-sql: true
+

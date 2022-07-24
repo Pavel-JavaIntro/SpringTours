@@ -12,7 +12,7 @@
     <title>User Info</title>
 </head>
 <body>
-<p>User: ${user}</p>
+<p>User: ${libUser}</p>
 <p>Users: ${users}</p>
 </body>
 </html>
