@@ -24,6 +24,10 @@ public class LibraryUser implements Serializable {
     @Column(name="username")
     private String username;
 
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="username")
+//    private Authority authority;
+
     @Column(name="password")
     private String password;
 
@@ -33,14 +37,15 @@ public class LibraryUser implements Serializable {
     public LibraryUser() {
     }
 
-    public LibraryUser(String name, String surname, String email, String username, String password, int enabled) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-    }
+//    public LibraryUser(String name, String surname, String email, String username, String password, int enabled) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.email = email;
+////        this.username = username;
+//        this.auth
+//        this.password = password;
+//        this.enabled = enabled;
+//    }
 
     public int getId() {
         return id;
@@ -78,6 +83,14 @@ public class LibraryUser implements Serializable {
         this.username = username;
     }
 
+//    public Authority getAuthority() {
+//        return authority;
+//    }
+//
+//    public void setAuthority(Authority authority) {
+//        this.authority = authority;
+//    }
+
     public String getPassword() {
         return password;
     }
@@ -96,6 +109,6 @@ public class LibraryUser implements Serializable {
 
     @Override
     public String toString() {
-        return id + " " + name + " " + surname + " " + email + " " + username;
+        return id + " " + name + " " + surname + " " + email;
     }
 }

@@ -35,6 +35,7 @@ public class SpringTourSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/authorities").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/authorities/**").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/tours/**").hasRole("ADMIN")
                 .antMatchers("/libraryUsers/**").hasRole("ADMIN")
                 .and().formLogin().permitAll();

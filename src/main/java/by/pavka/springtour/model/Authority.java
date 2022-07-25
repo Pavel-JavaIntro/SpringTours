@@ -5,29 +5,41 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="authorities")
-@IdClass(Authority.class)
 public class Authority implements Serializable {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+
     @Column(name="username")
-    private String Id;
+    private String username;
 
-    @Id
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="username")
+//    private LibraryUser user;
+
+    @Enumerated(EnumType.STRING)
     @Column(name="authority")
-    private String role;
+    private Role role;
 
-    public String getId() {
-        return Id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(String username) {
-        this.Id = username;
+
+    public String getUsername() {
+        return username;
     }
 
-    public String getRole() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
