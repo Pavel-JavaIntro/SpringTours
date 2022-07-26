@@ -2,6 +2,7 @@ package by.pavka.springtour.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -33,6 +34,22 @@ public class LibraryUser implements Serializable {
 
     @Column(name="enabled")
     private int enabled;
+
+    public List<Tour> getTours() {
+        return tours;
+    }
+
+    public void setTours(List<Tour> tours) {
+        this.tours = tours;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name="bookings"
+            , joinColumns = @JoinColumn(name="tourist_id")
+            , inverseJoinColumns = @JoinColumn(name="tour_id")
+    )
+    private List<Tour> tours;
 
     public LibraryUser() {
     }

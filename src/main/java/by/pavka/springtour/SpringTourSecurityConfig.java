@@ -28,8 +28,8 @@ public class SpringTourSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/api").permitAll()
-                .antMatchers("/SpringTour/index.html").permitAll()
-                .antMatchers("/SpringTour/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+//                .antMatchers("/SpringTour/index.html").permitAll()
+//                .antMatchers("/SpringTour/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/libraryUsers").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/tours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")

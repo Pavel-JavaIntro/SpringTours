@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -20,6 +21,14 @@ public class LibraryUserController {
 
     @GetMapping
     public String showAllLibraryUsers(ModelMap map) {
+        List<LibraryUser> users = userService.findAll();
+        map.addAttribute("users", users);
+        return "user_info";
+    }
+
+    @PostMapping
+    public String registerNewTourist(LibraryUser tourist, ModelMap map) {
+        //TODO
         List<LibraryUser> users = userService.findAll();
         map.addAttribute("users", users);
         return "user_info";

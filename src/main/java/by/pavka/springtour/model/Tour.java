@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="tours")
@@ -39,9 +40,25 @@ public class Tour implements Serializable {
     @Column(name="price")
     private int price;
 
+    public List<LibraryUser> getTourists() {
+        return tourists;
+    }
+
+    public void setTourists(List<LibraryUser> tourists) {
+        this.tourists = tourists;
+    }
+
     @Column(name="tour_status")
     @Enumerated(EnumType.STRING)
     private TourStatus tourStatus;
+
+    @ManyToMany
+    @JoinTable(
+            name="bookings"
+            , joinColumns = @JoinColumn(name="tour_id")
+            , inverseJoinColumns = @JoinColumn(name="tourist_id")
+    )
+    private List<LibraryUser> tourists;
 
     public int getId() {
         return id;
