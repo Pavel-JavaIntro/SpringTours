@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class LibraryUser implements Serializable {
     private String email;
 
     @Column(name="username")
+    @Size(min=3, message="Too short username")
     private String username;
 
 //    @OneToOne(cascade = CascadeType.ALL)

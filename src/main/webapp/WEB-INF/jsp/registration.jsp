@@ -18,13 +18,14 @@
 <br>
 <br>
 
-<form:form method="post" action="" modelAttribute="user"><br>
+<form:form method="post" action="registered" modelAttribute="user"><br>
     Name: <form:input type="text" path="name"/><br>
     Surname: <form:input type="text" path="surname"/><br>
     Email: <form:input type="text" path="email"/><br>
-    Login: <form:input type="text" path="username"/><br>
-    Password: <form:input type="password" path=""/><br>
-    Enter password again: <form:input type="password" path="password"/><br>
+    Login: <form:input type="text" path="username"/>
+    <form:errors path="username"/><br>
+    Password: <form:input type="password" path="password"/><br>
+    Enter password again: <form:input type="password" path=""/><br>
     <input type="submit" value="Register"/><br>
 </form:form>
 </body>

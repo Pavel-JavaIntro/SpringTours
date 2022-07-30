@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 
 
 @Controller
@@ -29,8 +31,11 @@ public class RegistrationController {
     }
 
     @Transactional
-    @PostMapping(path="/register")
-    public String registerUser(@ModelAttribute LibraryUser user) {
+    @PostMapping(path="/registered")
+    public String registerUser(@Valid @ModelAttribute("user") LibraryUser user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "registration";
+        }
         String username = user.getUsername();
         Authority authority = new Authority();
         authority.setUsername(username);
