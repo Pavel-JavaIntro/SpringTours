@@ -15,6 +15,6 @@
 <br>
 <br>
 <a href="users">Sign In if you are already registered</a><br>
-<a href="registration.jsp">Sign Up if you are not registered</a>
+<a href="register">Sign Up if you are not registered</a>
 
 </body>

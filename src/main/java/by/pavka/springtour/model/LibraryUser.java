@@ -1,5 +1,8 @@
 package by.pavka.springtour.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -35,13 +38,13 @@ public class LibraryUser implements Serializable {
     @Column(name="enabled")
     private int enabled;
 
-    public List<Tour> getTours() {
-        return tours;
-    }
-
-    public void setTours(List<Tour> tours) {
-        this.tours = tours;
-    }
+//    public List<Tour> getTours() {
+//        return tours;
+//    }
+//
+//    public void setTours(List<Tour> tours) {
+//        this.tours = tours;
+//    }
 
     @ManyToMany
     @JoinTable(
@@ -49,7 +52,16 @@ public class LibraryUser implements Serializable {
             , joinColumns = @JoinColumn(name="tourist_id")
             , inverseJoinColumns = @JoinColumn(name="tour_id")
     )
+    @JsonManagedReference
     private List<Tour> tours;
+
+    public List<Tour> getTours() {
+        return tours;
+    }
+
+    public void setTours(List<Tour> tours) {
+        this.tours = tours;
+    }
 
     public LibraryUser() {
     }

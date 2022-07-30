@@ -16,21 +16,28 @@ import java.util.List;
 @RequestMapping("users")
 public class LibraryUserController {
 
-    @Autowired
-    LibraryUserService userService;
+  @Autowired LibraryUserService userService;
 
-    @GetMapping
-    public String showAllLibraryUsers(ModelMap map) {
-        List<LibraryUser> users = userService.findAll();
-        map.addAttribute("users", users);
-        return "user_info";
-    }
+  @GetMapping
+  public String showAllLibraryUsers(ModelMap map) {
+    System.out.println("DONE!");
+    List<LibraryUser> users = userService.getAll();
+    map.addAttribute("users", users);
+    return "user_info";
+  }
 
-    @PostMapping
-    public String registerNewTourist(LibraryUser tourist, ModelMap map) {
-        //TODO
-        List<LibraryUser> users = userService.findAll();
-        map.addAttribute("users", users);
-        return "user_info";
-    }
+  @PostMapping
+  public String registerNewTourist(LibraryUser tourist, ModelMap map) {
+    // TODO
+    //    List<LibraryUser> users = userService.findAll();
+    //    map.addAttribute("users", users);
+    System.out.println("DOING!!");
+    return "user_info";
+  }
+
+  @GetMapping("register")
+  public String startRegistration(ModelMap map) {
+    map.put("user", new LibraryUser());
+    return "registration";
+  }
 }

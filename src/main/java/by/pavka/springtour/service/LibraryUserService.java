@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibraryUserService {
@@ -18,7 +19,24 @@ public class LibraryUserService {
     @Autowired
     LibraryUserRepository repository;
 
-    public List<LibraryUser> findAll() {
+    public List<LibraryUser> getAll() {
         return repository.findAll();
     }
+
+    public Optional<LibraryUser> get(int i) {
+        return repository.findById(i);
+    }
+
+    public LibraryUser save(LibraryUser user) {
+        return repository.save(user);
+    }
+
+    public void delete(int i) {
+        repository.deleteById(i);
+    }
+
+    public void deleteByUsername(String username) {
+        repository.deleteByUsername(username);
+    }
+
 }

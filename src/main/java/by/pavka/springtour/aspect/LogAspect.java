@@ -9,16 +9,17 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Aspect
 @Component
 @Slf4j
 public class LogAspect {
-    @Around("execution(* by.pavka.springtour.controller.rest.TourRestController.getTours())")
-    public ResponseEntity<List<Tour>> logTourCheck(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("execution(* by.pavka.springtour.controller.rest.TourRestController.getAll())")
+    public List<Tour> logTourCheck(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("before " + joinPoint.getSignature().getName());
-        ResponseEntity<List<Tour>> re = (ResponseEntity) joinPoint.proceed();
+        List<Tour> re = (ArrayList) joinPoint.proceed();
         log.info("after");
         return re;
     }

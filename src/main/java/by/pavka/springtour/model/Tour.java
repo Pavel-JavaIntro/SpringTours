@@ -1,6 +1,7 @@
 package by.pavka.springtour.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,9 +17,11 @@ public class Tour implements Serializable {
     @Column(name="id")
     private int id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name="type_id")
     private TourType tourType;
+
+
 
     @Column(name="description")
     private String description;
@@ -58,6 +61,7 @@ public class Tour implements Serializable {
             , joinColumns = @JoinColumn(name="tour_id")
             , inverseJoinColumns = @JoinColumn(name="tourist_id")
     )
+    @JsonBackReference
     private List<LibraryUser> tourists;
 
     public int getId() {

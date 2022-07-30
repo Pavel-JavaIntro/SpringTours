@@ -1,44 +1,51 @@
 package by.pavka.springtour.controller.rest;
 
-//@RestController
-//@RequestMapping("api/tours")
+import by.pavka.springtour.model.Tour;
+import by.pavka.springtour.model.TourType;
+import by.pavka.springtour.service.TourService;
+import by.pavka.springtour.service.TourTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("tours")
 public class TourRestController {
-    //TODO fix LogAspect
-//    @Autowired
-//    TourDaoImpl dao;
-//
-//    @GetMapping("")
-//    public ResponseEntity<List<Tour>> getTours() {
-//        List<Tour> tours = dao.getAllTours();
-//        return new ResponseEntity<>(tours, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Tour> getTour(@PathVariable int id) {
-//        Tour tour = dao.getTourById(id);
-//        if (tour == null) {
-//            throw new NoSuchIDException("No such Tour ID exists");
-//        }
-//        return new ResponseEntity<>(tour, HttpStatus.OK);
-//    }
-//
-//    @PutMapping("")
-//    public ResponseEntity<Tour> updateTour(@RequestBody Tour tour) {
-//        dao.updateTour(tour);
-//        return new ResponseEntity<>(tour, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("")
-//    public ResponseEntity<Tour> addTour(@RequestBody Tour tour) {
-//        int key = dao.addTour(tour);
-//        tour.setId(key);
-//        return new ResponseEntity<>(tour, HttpStatus.CREATED);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public HttpStatus deleteTour(@PathVariable int id) {
-//        //TODO probably needs check for id out of range, like in UserController
-//        dao.deleteTour(id);
-//        return HttpStatus.NO_CONTENT;
-//    }
+
+  @Autowired TourService service;
+  @Autowired TourTypeService typeService;
+
+  @GetMapping("")
+  public List<Tour> getAll() {
+    List<Tour> tours = service.getAll();
+    return tours;
+  }
+
+  @GetMapping("/{id}")
+  public Tour get(@PathVariable int id) {
+    return service.get(id).get();
+  }
+
+  @PutMapping("")
+  public Tour update(@RequestBody Tour tour) {
+    return service.save(tour);
+  }
+
+  @PostMapping("")
+  public Tour add(@RequestBody Tour tour) {
+    List<TourType> types = typeService.getAll();
+    TourType tourType = tour.getTourType();
+    System.out.println("Still checking");
+    if (!types.contains(tourType)) {
+      System.out.println("Checked");
+      typeService.save(tourType);
+    }
+    return service.save(tour);
+  }
+
+  @DeleteMapping("/{id}")
+  public void deleteTour(@PathVariable int id) {
+    service.delete(id);
+  }
 }

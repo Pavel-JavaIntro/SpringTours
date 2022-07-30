@@ -17,17 +17,17 @@ public class TourType implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private int Id;
 
     @Column(name="type")
     private String description;
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getDescription() {
