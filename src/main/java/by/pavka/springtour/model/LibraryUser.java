@@ -37,6 +37,17 @@ public class LibraryUser implements Serializable {
     @Column(name="password")
     private String password;
 
+    @Transient
+    private String checkPassword;
+
+    public String getCheckPassword() {
+        return checkPassword;
+    }
+
+    public void setCheckPassword(String checkPassword) {
+        this.checkPassword = checkPassword;
+    }
+
     @Column(name="enabled")
     private int enabled;
 
@@ -142,4 +153,5 @@ public class LibraryUser implements Serializable {
     public String toString() {
         return id + " " + name + " " + surname + " " + email;
     }
+
 }

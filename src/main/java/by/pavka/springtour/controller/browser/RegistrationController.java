@@ -33,7 +33,7 @@ public class RegistrationController {
     @Transactional
     @PostMapping(path="/registered")
     public String registerUser(@Valid @ModelAttribute("user") LibraryUser user, BindingResult result) {
-        if (result.hasErrors()) {
+        if (result.hasErrors() || (!user.getPassword().equals(user.getCheckPassword()))) {
             return "registration";
         }
         String username = user.getUsername();
@@ -42,6 +42,6 @@ public class RegistrationController {
         authority.setRole(Role.ROLE_TOURIST);
         authorityService.save(authority);
         userService.save(user);
-        return "user_info";
+        return "tour_listing";
     }
 }

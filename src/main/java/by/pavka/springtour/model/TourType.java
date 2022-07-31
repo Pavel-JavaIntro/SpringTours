@@ -50,4 +50,9 @@ public class TourType implements Serializable {
     public int hashCode() {
         return Objects.hash(description);
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
