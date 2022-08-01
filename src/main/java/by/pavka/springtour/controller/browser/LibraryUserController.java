@@ -3,7 +3,6 @@ package by.pavka.springtour.controller.browser;
 import by.pavka.springtour.model.Booking;
 import by.pavka.springtour.model.LibraryUser;
 import by.pavka.springtour.model.Tour;
-import by.pavka.springtour.repository.LibraryUserRepository;
 import by.pavka.springtour.service.BookingService;
 import by.pavka.springtour.service.LibraryUserService;
 import by.pavka.springtour.service.TourService;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -29,11 +28,10 @@ public class LibraryUserController {
   @Autowired TourService tourService;
 
   @GetMapping
-  public String showAllLibraryUsers(ModelMap map) {
-    System.out.println("DONE!");
+  public String showAllUsers(ModelMap map) {
     List<LibraryUser> users = userService.getAll();
     map.addAttribute("users", users);
-    return "user_info";
+    return "user_listing";
   }
 
   @Transactional
@@ -61,9 +59,9 @@ public class LibraryUserController {
 //    return "user_info";
 //  }
 
-  @GetMapping("register")
-  public String startRegistration(ModelMap map) {
-    map.put("user", new LibraryUser());
-    return "registration";
-  }
+//  @GetMapping("register")
+//  public String startRegistration(ModelMap map) {
+//    map.put("user", new LibraryUser());
+//    return "registration";
+//  }
 }

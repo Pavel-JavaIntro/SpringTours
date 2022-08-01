@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -15,7 +16,15 @@
 </head>
 <body>
 <h3>Choose Your Spring Tour!</h3>
-<br><a href="users/account">My Account</a><br><br><br>
+<br><a href="users/account">My Account</a><br><br>
+<security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
+    <br><a href="users">All Users</a><br><br>
+    <br><a href="springtours">Add Tour</a><br><br>
+    <br><a href="bookings">Edit Bookings</a><br><br>
+</security:authorize>
+<security:authorize access="hasRole('ADMIN')">
+    <br><a href="authorities">Edit Bookings</a><br><br>
+</security:authorize>
 <form action="springtours/book">
     <table>
         <tr>
@@ -27,6 +36,9 @@
             <td><b>End Date </b></td>
             <td><b>Status</b></td>
             <td><b>Booking</b></td>
+            <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
+            <td><b>Change Status</b></td>
+            </security:authorize>
         </tr>
         <c:forEach items="${tours}" var="tour">
             <tr>
@@ -40,9 +52,13 @@
                 <td>
                     <button name="booking" value="${tour.id}"
                         ${(tour.capacity-tour.booked <= 0)
-                        || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.CANCELLED))?
-                        'disabled="disabled"':''}>Book Now!</button>
+                                || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.CANCELLED))?
+                                'disabled="disabled"':''}>Book Now!
+                    </button>
                 </td>
+                <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
+                    <td><b>Change Status</b></td>
+                </security:authorize>
             </tr>
         </c:forEach>
     </table>
