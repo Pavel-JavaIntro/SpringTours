@@ -38,7 +38,10 @@
                 <td>${tour.endDate}</td>
                 <td>${tour.tourStatus}</td>
                 <td>
-                    <button name="booking" value="${tour.id}">Book Now!</button>
+                    <button name="booking" value="${tour.id}"
+                        ${(tour.capacity-tour.booked <= 0)
+                        || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.CANCELLED))?
+                        'disabled="disabled"':''}>Book Now!</button>
                 </td>
             </tr>
         </c:forEach>

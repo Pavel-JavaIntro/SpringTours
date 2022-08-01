@@ -9,6 +9,7 @@ import by.pavka.springtour.service.LibraryUserService;
 import by.pavka.springtour.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,7 @@ public class LibraryUserController {
     return "user_info";
   }
 
+  @Transactional
   @GetMapping("/account")
   public String showPersonalAccount(ModelMap map, Principal principal) {
     LibraryUser user = userService.getByUsername(principal.getName()).get();
@@ -42,14 +44,10 @@ public class LibraryUserController {
     List<Booking> bookings = bookingService.findByTouristId(userId);
     List<Tour> tours = new ArrayList<>();
     for (Booking b : bookings) {
-      System.out.println("Booking: " + b.getId());
       Tour tour = tourService.get(b.getTourId()).get();
-      System.out.println("Tour: " + tour.getId());
       tours.add(tour);
     }
-    System.out.println(tours);
-//    map.addAttribute("user", user);
-    map.clear();
+    map.addAttribute("user", user);
     map.addAttribute("tours", tours);
     return "user_info";
   }

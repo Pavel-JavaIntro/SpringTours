@@ -36,4 +36,15 @@ public class BookingService {
         List<Booking> bookings = repository.findByTouristId(id);
         return bookings;
     }
+
+    public void deleteByTourIdAndTouristId(int tourId, int touristId) {
+        repository.deleteByTourIdAndTouristId(tourId, touristId);
+    }
+
+    public boolean containsByTourIdAndTouristId(int tourId, int touristId) {
+        if (repository.findByTourIdAndTouristId(tourId, touristId) != null) {
+            return true;
+        }
+        return false;
+    }
 }

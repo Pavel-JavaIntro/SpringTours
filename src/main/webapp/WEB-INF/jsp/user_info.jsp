@@ -13,9 +13,13 @@
     <title>User Info</title>
 </head>
 <body>
-<%--<p>User: ${user}</p>--%>
-<p>Tours: ${tours}</p>
-<form action="springtours/book">
+
+<a href="../springtours"> Back to All Tours </a>
+<p>User Name: ${user.name}<br>
+User Surname: ${user.surname}<br>
+User Login: ${user.username}</p>
+
+<form action="../springtours/cancel">
     <table>
         <tr>
             <td><b>Tour Description</b></td>

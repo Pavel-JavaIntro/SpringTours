@@ -7,6 +7,7 @@ import by.pavka.springtour.service.LibraryUserService;
 import by.pavka.springtour.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -20,26 +21,40 @@ import java.util.List;
 @RequestMapping("/springtours")
 public class TourController {
   @Autowired TourService tourService;
-  @Autowired
-  BookingService bookingService;
-  @Autowired
-  LibraryUserService userService;
+  @Autowired BookingService bookingService;
+  @Autowired LibraryUserService userService;
 
   @GetMapping("")
   public String getTours(ModelMap map) {
-    List<Tour> tours = tourService.getAll();
+    List<Tour> tours = tourService.getAllValid();
     map.addAttribute("tours", tours);
     return "tour_listing";
   }
 
+  @Transactional
   @GetMapping("/book")
   public String bookTour(@RequestParam String booking, Principal principal) {
+    int tourId = Integer.parseInt(booking);
     int userId = userService.getByUsername(principal.getName()).get().getId();
-    Booking tourBooking = new Booking();
-    tourBooking.setTourId(Integer.parseInt(booking));
-    tourBooking.setTouristId(userId);
-    tourBooking.setPaid(false);
-    bookingService.save(tourBooking);
+    if (!bookingService.containsByTourIdAndTouristId(tourId, userId) &&
+            (tourService.incrementBooking(tourId) > 0)) {
+      Booking tourBooking = new Booking();
+      tourBooking.setTourId(tourId);
+      tourBooking.setTouristId(userId);
+      tourBooking.setPaid(false);
+      bookingService.save(tourBooking);
+    }
+    return "redirect:/users/account";
+  }
+
+  @Transactional
+  @GetMapping("/cancel")
+  public String cancelBooking(@RequestParam String booking, Principal principal) {
+    int tourId = Integer.parseInt(booking);
+    if (tourService.decrementBooking(tourId) > 0) {
+      int userId = userService.getByUsername(principal.getName()).get().getId();
+      bookingService.deleteByTourIdAndTouristId(tourId, userId);
+    }
     return "redirect:/users/account";
   }
   //

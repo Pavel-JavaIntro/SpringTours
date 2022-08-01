@@ -5,5 +5,5 @@ public enum TourStatus {
     HOT,
     RUNNING,
     EXPIRED,
-    CANCELED
+    CANCELLED
 }

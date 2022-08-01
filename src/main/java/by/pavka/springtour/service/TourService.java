@@ -20,6 +20,10 @@ public class TourService {
         return repository.findAll();
     }
 
+    public List<Tour> getAllValid() {
+        return repository.findAllValid();
+    }
+
     public Optional<Tour> get(int i) {
         return repository.findById(i);
     }
@@ -30,5 +34,13 @@ public class TourService {
 
     public void delete(int i) {
         repository.deleteById(i);
+    }
+
+    public int incrementBooking(int id) {
+        return repository.incrementBooking(id);
+    }
+
+    public int decrementBooking(int id) {
+        return repository.decrementBooking(id);
     }
 }

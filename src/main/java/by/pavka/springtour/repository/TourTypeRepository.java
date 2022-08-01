@@ -19,4 +19,5 @@ public interface TourTypeRepository extends JpaRepository<TourType, Integer> {
 
     @Override
     void deleteById(Integer integer);
+
 }
