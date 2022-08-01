@@ -146,7 +146,7 @@ public class Tour implements Serializable {
                 ", booked=" + booked +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", price=" + price + "status= " + tourStatus +
+                ", price=" + price + ", status= " + tourStatus +
                 '}';
     }
 }

@@ -39,4 +39,8 @@ public class LibraryUserService {
         repository.deleteByUsername(username);
     }
 
+    public Optional<LibraryUser> getByUsername(String username) {
+        return repository.getByUsername(username);
+    }
+
 }

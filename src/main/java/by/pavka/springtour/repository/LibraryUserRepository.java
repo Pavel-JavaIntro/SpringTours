@@ -20,4 +20,6 @@ public interface LibraryUserRepository extends JpaRepository<LibraryUser, Intege
     void deleteById(Integer integer);
 
     void deleteByUsername(String username);
+
+    Optional<LibraryUser> getByUsername(String username);
 }

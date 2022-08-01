@@ -18,4 +18,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     @Override
     void deleteById(Integer integer);
+
+    List<Booking> findByTouristId(int id);
 }

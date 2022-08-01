@@ -31,4 +31,9 @@ public class BookingService {
     public void delete(int i) {
         repository.deleteById(i);
     }
+
+    public List<Booking> findByTouristId(int id) {
+        List<Booking> bookings = repository.findByTouristId(id);
+        return bookings;
+    }
 }
