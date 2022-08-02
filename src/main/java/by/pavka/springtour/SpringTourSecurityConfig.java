@@ -39,17 +39,7 @@ public class SpringTourSecurityConfig
                 .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/authorities").hasRole("ADMIN")
                 .antMatchers("/springauthorities").hasRole("ADMIN")
-//                .antMatchers("/SpringTour/index.html").permitAll()
-//                .antMatchers("/SpringTour/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/libraryUsers").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/tours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/authorities").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/authorities/**").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
-//                .antMatchers("/tours/**").hasRole("ADMIN")
-//                .antMatchers("/libraryUsers/**").hasRole("ADMIN")
+                .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER")
                 .and().formLogin().permitAll();
     }
 }
