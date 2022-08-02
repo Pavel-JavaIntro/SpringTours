@@ -43,7 +43,6 @@ public class LibraryUserController {
         userService.save(u);
       }
     }
-
     map.addAttribute("users", users);
     return "user_listing";
   }

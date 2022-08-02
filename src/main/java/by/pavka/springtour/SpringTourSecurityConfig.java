@@ -37,6 +37,7 @@ public class SpringTourSecurityConfig
                 .antMatchers("/users/account").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/authorities").hasRole("ADMIN")
+                .antMatchers("/springauthorities").hasRole("ADMIN")
 //                .antMatchers("/SpringTour/index.html").permitAll()
 //                .antMatchers("/SpringTour/users").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
 //                .antMatchers("/libraryUsers").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
