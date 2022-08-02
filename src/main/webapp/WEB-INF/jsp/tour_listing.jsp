@@ -19,8 +19,8 @@
 <br><a href="users/account">My Account</a><br><br>
 <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
     <br><a href="users">All Users</a><br><br>
-    <br><a href="springtours">Add Tour</a><br><br>
-    <br><a href="bookings">Edit Bookings</a><br><br>
+    <br><a href="springtours/new">Add Tour</a><br><br>
+    <br><a href="springbookings">Edit Bookings</a><br><br>
 </security:authorize>
 <security:authorize access="hasRole('ADMIN')">
     <br><a href="springauthorities">Edit Authorities</a><br><br>

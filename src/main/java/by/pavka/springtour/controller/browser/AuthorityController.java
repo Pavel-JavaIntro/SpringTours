@@ -24,15 +24,16 @@ public class AuthorityController {
   public String showAllAuthorities(@Nullable @RequestParam String[] authId, ModelMap map) {
     List<Authority> authorities = authorityService.getAll();
     if (authId != null) {
-      System.out.println("Start Processing");
       List<String> authIds = Arrays.asList(authId);
       for (Authority a : authorities) {
-        if (authIds.contains(a.getId() + "")) {
-          a.setRole(Role.ROLE_MANAGER);
-        } else {
-          a.setRole(Role.ROLE_TOURIST);
+        if (a.getRole() != Role.ROLE_ADMIN) {
+          if (authIds.contains(a.getId() + "")) {
+            a.setRole(Role.ROLE_MANAGER);
+          } else {
+            a.setRole(Role.ROLE_TOURIST);
+          }
+          authorityService.save(a);
         }
-        authorityService.save(a);
       }
     }
     map.addAttribute("authorities", authorities);
