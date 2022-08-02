@@ -13,7 +13,6 @@
 <body>
 <<h2>Welcome to Spring Tour!!</h2>
 <br>
-<br>
 <a href="springtours">Sign In if you are already registered</a><br>
 <a href="register">Sign Up if you are not registered</a>
 

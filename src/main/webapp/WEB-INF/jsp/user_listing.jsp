@@ -15,8 +15,9 @@
     <title>Spring Tour</title>
     <script type="text/javascript">
         function processUser(elmnt) {
-            alert('Are you really going to change the status?')
-            elmnt.form.submit()
+            if (confirm('Are you really going to change the status?')) {
+                elmnt.form.submit()
+            }
         }
     </script>
 </head>

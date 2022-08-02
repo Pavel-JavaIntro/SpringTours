@@ -2,6 +2,7 @@ package by.pavka.springtour.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,12 +34,14 @@ public class Tour implements Serializable {
     private int booked;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="start_date")
     private Date startDate;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="end_date")
-    private Date endDate;
+  @Temporal(TemporalType.DATE)
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @Column(name = "end_date")
+  private Date endDate;
 
     @Column(name="price")
     private int price;

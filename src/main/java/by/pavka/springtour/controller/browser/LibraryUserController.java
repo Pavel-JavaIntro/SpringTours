@@ -62,19 +62,4 @@ public class LibraryUserController {
     map.addAttribute("tours", tours);
     return "user_info";
   }
-//
-//  @PostMapping
-//  public String registerNewTourist(LibraryUser tourist, ModelMap map) {
-//    // TODO
-//    //    List<LibraryUser> users = userService.findAll();
-//    //    map.addAttribute("users", users);
-//    System.out.println("DOING!!");
-//    return "user_info";
-//  }
-
-//  @GetMapping("register")
-//  public String startRegistration(ModelMap map) {
-//    map.put("user", new LibraryUser());
-//    return "registration";
-//  }
 }

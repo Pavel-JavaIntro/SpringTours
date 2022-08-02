@@ -13,6 +13,13 @@
 <html>
 <head>
     <title>Spring Tour</title>
+    <script type="text/javascript">
+        function processUser(elmnt) {
+            if (confirm('Are you really going to change the tour status?')) {
+                elmnt.form.submit()
+            }
+        }
+    </script>
 </head>
 <body>
 <h3>Choose Your Spring Tour!</h3>
@@ -37,7 +44,7 @@
             <td><b>Status</b></td>
             <td><b>Booking</b></td>
             <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
-            <td><b>Change Status</b></td>
+                <td><b>Change Status</b></td>
             </security:authorize>
         </tr>
         <c:forEach items="${tours}" var="tour">
@@ -57,7 +64,11 @@
                     </button>
                 </td>
                 <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
-                    <td><b>Change Status</b></td>
+                    <td>
+                        <input type="checkbox" name="tourIds" value="${tour.id}"
+                            ${tour.tourStatus == 'RUNNING'?'disabled="disabled"':''}
+                            ${tour.tourStatus == 'CANCELLED'?'checked="checked"' : ''} onchange="processUser(this)"/>
+                    </td>
                 </security:authorize>
             </tr>
         </c:forEach>

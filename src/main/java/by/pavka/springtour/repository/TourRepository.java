@@ -20,7 +20,7 @@ public interface TourRepository extends JpaRepository<Tour, Integer> {
     List<Tour> findAll();
 
     @Query(value="Select * from tours WHERE tour_status = 'VALID' " +
-            "OR tour_status = 'HOT' OR tour_status = 'RUNNING'", nativeQuery = true)
+            "OR tour_status = 'RUNNING'", nativeQuery = true)
     List<Tour> findAllValid();
 
     @Override

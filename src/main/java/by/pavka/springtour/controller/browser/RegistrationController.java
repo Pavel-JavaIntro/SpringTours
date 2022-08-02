@@ -25,7 +25,7 @@ public class RegistrationController {
 
   @GetMapping("/register")
   public String startRegistration(ModelMap map) {
-    map.put("user", new LibraryUser());
+    map.addAttribute("user", new LibraryUser());
     return "registration";
   }
 
@@ -34,8 +34,6 @@ public class RegistrationController {
   public String registerUser(
       @Valid @ModelAttribute("user") LibraryUser user, BindingResult result) {
     if (result.hasErrors() || (!user.getPassword().equals(user.getCheckPassword()))) {
-      System.out.println("Pass: " + user.getPassword());
-      System.out.println("CheckPass: " + user.getCheckPassword());
       return "registration";
     }
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(

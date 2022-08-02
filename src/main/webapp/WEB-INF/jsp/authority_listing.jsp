@@ -15,8 +15,9 @@
     <title>Spring Tour</title>
     <script type="text/javascript">
         function processUser(elmnt) {
-            alert('Are you really going to change the role?')
-            elmnt.form.submit()
+            if (confirm('Are you really going to change the role?')) {
+                elmnt.form.submit()
+            }
         }
     </script>
 </head>
@@ -31,13 +32,13 @@
         </tr>
         <c:forEach items="${authorities}" var="authority">
             <c:if test="${authority.role!='ROLE_ADMIN'}">
-            <tr>
-                <td>${authority.username}</td>
-                <td><input type="checkbox" name="authId" value="${authority.id}"
-                    ${authority.role == 'ROLE_MANAGER'?'checked="checked"' : ''} onchange="processUser(this)"/>
-                </td>
-            </tr>
-        </c:if>
+                <tr>
+                    <td>${authority.username}</td>
+                    <td><input type="checkbox" name="authId" value="${authority.id}"
+                        ${authority.role == 'ROLE_MANAGER'?'checked="checked"' : ''} onchange="processUser(this)"/>
+                    </td>
+                </tr>
+            </c:if>
         </c:forEach>
     </table>
 </form>
