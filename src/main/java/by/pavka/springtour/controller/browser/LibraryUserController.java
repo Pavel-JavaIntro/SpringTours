@@ -7,6 +7,7 @@ import by.pavka.springtour.service.BookingService;
 import by.pavka.springtour.service.LibraryUserService;
 import by.pavka.springtour.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -28,8 +30,20 @@ public class LibraryUserController {
   @Autowired TourService tourService;
 
   @GetMapping
-  public String showAllUsers(ModelMap map) {
+  public String showAllUsers(@Nullable @RequestParam String[] userId, ModelMap map) {
     List<LibraryUser> users = userService.getAll();
+    if (userId != null) {
+      List<String> userIds = Arrays.asList(userId);
+      for (LibraryUser u : users) {
+        if (userIds.contains(u.getId() + "")) {
+          u.setEnabled(1);
+        } else {
+          u.setEnabled(0);
+        }
+        userService.save(u);
+      }
+    }
+
     map.addAttribute("users", users);
     return "user_listing";
   }

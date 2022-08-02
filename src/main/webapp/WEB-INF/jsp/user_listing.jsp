@@ -14,16 +14,16 @@
 <head>
     <title>Spring Tour</title>
     <script type="text/javascript">
-        var url = new URL("http://foo.bar/?x=1&y=2");
-
-        // If your expected result is "http://foo.bar/?x=1&y=2&x=42"
-        url.searchParams.append('x', 42);
+        function processUser(elmnt) {
+            alert('Are you really going to change the status?')
+            elmnt.form.submit()
+        }
     </script>
 </head>
 <body>
 <h3>Spring Tourists</h3>
 <a href="springtours"> Back to All Tours </a><br><br>
-<form action="springtours">
+<form action="users">
     <table>
         <tr>
             <td><b>User Name</b></td>
@@ -38,8 +38,8 @@
                 <td>${user.surname}</td>
                 <td>${user.email}</td>
                 <td>${user.username}</td>
-                <td><input type="checkbox" name="userId" value="${user.enabled}"
-                           ${user.enabled == 1?'checked="checked"' : ''} onchange="this.form.submit()"/></td>
+                <td><input type="checkbox" name="userId" value="${user.id}"
+                    ${user.enabled == 1?'checked="checked"' : ''} onchange="processUser(this)"/></td>
             </tr>
         </c:forEach>
     </table>

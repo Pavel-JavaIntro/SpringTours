@@ -23,7 +23,7 @@
     <br><a href="bookings">Edit Bookings</a><br><br>
 </security:authorize>
 <security:authorize access="hasRole('ADMIN')">
-    <br><a href="authorities">Edit Bookings</a><br><br>
+    <br><a href="authorities">Edit Authorities</a><br><br>
 </security:authorize>
 <form action="springtours/book">
     <table>
