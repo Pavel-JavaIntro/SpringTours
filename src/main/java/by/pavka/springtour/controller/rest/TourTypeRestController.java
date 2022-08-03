@@ -1,5 +1,6 @@
 package by.pavka.springtour.controller.rest;
 
+import by.pavka.springtour.exception.NoSuchIDException;
 import by.pavka.springtour.model.Tour;
 import by.pavka.springtour.model.TourType;
 import by.pavka.springtour.service.TourTypeService;
@@ -23,7 +24,7 @@ public class TourTypeRestController {
 
     @GetMapping("/{id}")
     public TourType get(@PathVariable int id) {
-        return service.get(id).get();
+        return service.get(id).orElseThrow(() -> new NoSuchIDException("No such element present"));
     }
 
     @PutMapping("")

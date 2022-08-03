@@ -1,5 +1,6 @@
 package by.pavka.springtour.controller.rest;
 
+import by.pavka.springtour.exception.NoSuchIDException;
 import by.pavka.springtour.model.Authority;
 import by.pavka.springtour.model.LibraryUser;
 import by.pavka.springtour.model.Role;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @RestController
 @RequestMapping("api/users")
@@ -25,7 +27,7 @@ public class LibraryUserRestController {
 
   @GetMapping("/{id}")
   public LibraryUser get(@PathVariable int id) {
-    return service.get(id).get();
+    return service.get(id).orElseThrow(() -> new NoSuchIDException("No such element present"));
   }
 
   @Transactional
