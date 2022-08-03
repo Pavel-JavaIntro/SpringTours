@@ -19,11 +19,11 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class DateListener {
 
-    @Autowired TourService tourService;
+  @Autowired TourService tourService;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void runAfterStartup() {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+  @EventListener(ApplicationReadyEvent.class)
+  public void runAfterStartup() {
+    ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
     service.scheduleAtFixedRate(
         new Runnable() {
           @Override
@@ -35,21 +35,14 @@ public class DateListener {
           }
         },
         1,
-        5,
+        7200,
         TimeUnit.SECONDS);
-    }
+  }
 
   private void setRunning(Date date) {
-    System.out.println("Start setRunning");
     List<Tour> tours = tourService.findByTourStatusAndStartDate(TourStatus.VALID, date);
     for (Tour tour : tours) {
-      System.out.println(tour);
-        try {
-            tourService.setRunning(tour.getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("success");
+      tourService.setRunning(tour.getId());
     }
   }
 

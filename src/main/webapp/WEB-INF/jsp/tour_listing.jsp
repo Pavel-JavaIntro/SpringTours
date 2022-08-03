@@ -44,7 +44,7 @@
             <td><b>Status</b></td>
             <td><b>Booking</b></td>
             <security:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
-                <td><b>Change Status</b></td>
+                <td><b>Cancel Tour</b></td>
             </security:authorize>
         </tr>
         <c:forEach items="${tours}" var="tour">

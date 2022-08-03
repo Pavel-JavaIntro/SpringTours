@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("authorities")
+@RequestMapping("api/authorities")
 public class AuthorityRestController {
     @Autowired
     LibraryUserService userService;
@@ -34,6 +34,11 @@ public class AuthorityRestController {
 
     @PutMapping
     public Authority update(@RequestBody Authority authority) {
+        return service.save(authority);
+    }
+
+    @PostMapping
+    public Authority add(@RequestBody Authority authority) {
         return service.save(authority);
     }
 

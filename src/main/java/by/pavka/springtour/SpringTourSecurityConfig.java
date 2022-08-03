@@ -34,13 +34,13 @@ public class SpringTourSecurityConfig
                 .antMatchers("/register").permitAll()
                 .antMatchers("/springtours").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/springtours/book").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
+                .antMatchers("/springtours/cancel").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/springtours/new").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/users/account").hasAnyRole("ADMIN", "MANAGER", "TOURIST")
                 .antMatchers("/users").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/authorities").hasRole("ADMIN")
+                .antMatchers("/bookings").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/springauthorities").hasRole("ADMIN")
-                .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/api/**").hasRole("ADMIN")
+                .antMatchers("/api/**").permitAll()
                 .and().formLogin().permitAll();
     }
 }

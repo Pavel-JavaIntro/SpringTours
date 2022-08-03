@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("tours")
+@RequestMapping("api/tours")
 public class TourRestController {
 
   @Autowired TourService service;

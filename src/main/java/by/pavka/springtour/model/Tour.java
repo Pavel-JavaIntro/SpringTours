@@ -1,6 +1,7 @@
 package by.pavka.springtour.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -64,7 +65,8 @@ public class Tour implements Serializable {
             , joinColumns = @JoinColumn(name="tour_id")
             , inverseJoinColumns = @JoinColumn(name="tourist_id")
     )
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonIgnore
     private List<LibraryUser> tourists;
 
     public int getId() {

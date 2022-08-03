@@ -67,7 +67,7 @@ public class LibraryUser implements Serializable {
             , joinColumns = @JoinColumn(name="tourist_id")
             , inverseJoinColumns = @JoinColumn(name="tour_id")
     )
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Tour> tours;
 
     public List<Tour> getTours() {

@@ -20,7 +20,7 @@ public class BookingController {
     BookingService bookingService;
 
     @GetMapping
-    public String showAllAuthorities(@Nullable @RequestParam String[] bookId, ModelMap map) {
+    public String showAllBookings(@Nullable @RequestParam String[] bookId, ModelMap map) {
         List<Booking> bookings = bookingService.getAll();
         if (bookId != null) {
             List<String> bookIds = Arrays.asList(bookId);
