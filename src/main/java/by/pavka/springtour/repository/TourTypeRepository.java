@@ -3,6 +3,7 @@ package by.pavka.springtour.repository;
 import by.pavka.springtour.model.LibraryUser;
 import by.pavka.springtour.model.TourType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,5 +20,4 @@ public interface TourTypeRepository extends JpaRepository<TourType, Integer> {
 
     @Override
     void deleteById(Integer integer);
-
 }

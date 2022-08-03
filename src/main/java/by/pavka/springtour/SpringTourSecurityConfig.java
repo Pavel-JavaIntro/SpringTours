@@ -40,6 +40,7 @@ public class SpringTourSecurityConfig
                 .antMatchers("/authorities").hasRole("ADMIN")
                 .antMatchers("/springauthorities").hasRole("ADMIN")
                 .antMatchers("/tourTypes").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers("/api/**").hasRole("ADMIN")
                 .and().formLogin().permitAll();
     }
 }

@@ -59,7 +59,8 @@
                 <td>
                     <button name="booking" value="${tour.id}"
                         ${(tour.capacity-tour.booked <= 0)
-                                || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.CANCELLED))?
+                                || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.CANCELLED))
+                                || (tour.tourStatus.equals(by.pavka.springtour.model.TourStatus.RUNNING))?
                                 'disabled="disabled"':''}>Book Now!
                     </button>
                 </td>
