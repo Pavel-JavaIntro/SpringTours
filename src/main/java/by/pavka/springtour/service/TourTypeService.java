@@ -1,8 +1,6 @@
 package by.pavka.springtour.service;
 
-import by.pavka.springtour.model.LibraryUser;
 import by.pavka.springtour.model.TourType;
-import by.pavka.springtour.repository.LibraryUserRepository;
 import by.pavka.springtour.repository.TourTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -23,7 +21,7 @@ public class TourTypeService {
         return repository.findAll();
     }
 
-//    @CachePut("types")
+    @CachePut("types")
     public Optional<TourType> get(int i) {
         return repository.findById(i);
     }
